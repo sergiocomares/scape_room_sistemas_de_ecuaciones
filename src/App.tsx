@@ -10,6 +10,7 @@ import VictoryScreen from './components/VictoryScreen'
 import { playErrorSound, playSuccessSound } from './utils/sound'
 
 const START_PREVIEW_SECONDS = 7
+const ROOM_SOLVED_PREVIEW_SECONDS = 20
 
 export default function App() {
   // ── Application state ──
@@ -22,6 +23,12 @@ export default function App() {
   const [timerActive, setTimerActive] = useState(false)
   const [musicNeedsUnlock, setMusicNeedsUnlock] = useState(false)
   const musicRef = useRef<HTMLAudioElement | null>(null)
+  const solvedPreviewTimeoutRef = useRef<number | null>(null)
+  const appPhaseRef = useRef<AppPhase>('start')
+
+  useEffect(() => {
+    appPhaseRef.current = appPhase
+  }, [appPhase])
 
   // ── Background music (main + final screens) ──
   useEffect(() => {
@@ -32,6 +39,10 @@ export default function App() {
     musicRef.current = audio
 
     return () => {
+      if (solvedPreviewTimeoutRef.current !== null) {
+        window.clearTimeout(solvedPreviewTimeoutRef.current)
+        solvedPreviewTimeoutRef.current = null
+      }
       audio.pause()
       audio.currentTime = 0
       musicRef.current = null
@@ -50,7 +61,40 @@ export default function App() {
     tryPlayMusic()
   }, [tryPlayMusic])
 
+  const playSolvedRoomPreview = useCallback(() => {
+    const audio = musicRef.current
+    if (!audio || appPhaseRef.current !== 'playing') return
+
+    if (solvedPreviewTimeoutRef.current !== null) {
+      window.clearTimeout(solvedPreviewTimeoutRef.current)
+      solvedPreviewTimeoutRef.current = null
+    }
+
+    audio.pause()
+    audio.loop = false
+    audio.currentTime = 0
+
+    audio.play().catch(() => {
+      // If autoplay is blocked, silently keep game flow.
+    })
+
+    solvedPreviewTimeoutRef.current = window.setTimeout(() => {
+      const currentAudio = musicRef.current
+      if (!currentAudio) return
+      if (appPhaseRef.current !== 'playing') return
+
+      currentAudio.pause()
+      currentAudio.currentTime = ROOM_SOLVED_PREVIEW_SECONDS
+      solvedPreviewTimeoutRef.current = null
+    }, ROOM_SOLVED_PREVIEW_SECONDS * 1000)
+  }, [])
+
   useEffect(() => {
+    if (appPhase !== 'playing' && solvedPreviewTimeoutRef.current !== null) {
+      window.clearTimeout(solvedPreviewTimeoutRef.current)
+      solvedPreviewTimeoutRef.current = null
+    }
+
     const audio = musicRef.current
     if (!audio) return
 
@@ -72,7 +116,7 @@ export default function App() {
     setMusicNeedsUnlock(false)
   }, [appPhase, tryPlayMusic])
 
-  // On start screen, only allow a 10-second music preview.
+  // On start screen, only allow a short music preview.
   useEffect(() => {
     const audio = musicRef.current
     if (!audio) return
@@ -152,10 +196,11 @@ export default function App() {
 
   // Solve success → success phase
   const handleSolveSuccess = useCallback(() => {
+    playSolvedRoomPreview()
     const room = ROOMS[roomIndex]
     setBadges((prev) => [...prev, room.badge])
     setRoomPhase('success')
-  }, [roomIndex])
+  }, [roomIndex, playSolvedRoomPreview])
 
   // Next room
   const handleNextRoom = useCallback(() => {
