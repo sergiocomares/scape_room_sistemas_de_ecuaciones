@@ -25,7 +25,7 @@ export default function App() {
 
   // ── Background music (main + final screens) ──
   useEffect(() => {
-    const audio = new Audio('/audio/final-song.mp3')
+    const audio = new Audio(`${import.meta.env.BASE_URL}audio/final-song.mp3`)
     audio.loop = true
     audio.volume = 0.55
     audio.preload = 'auto'
