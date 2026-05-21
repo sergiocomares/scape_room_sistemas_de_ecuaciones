@@ -9,6 +9,8 @@ import RoomCard from './components/RoomCard'
 import VictoryScreen from './components/VictoryScreen'
 import { playErrorSound, playSuccessSound } from './utils/sound'
 
+const START_PREVIEW_SECONDS = 7
+
 export default function App() {
   // ── Application state ──
   const [appPhase, setAppPhase]   = useState<AppPhase>('start')
@@ -54,6 +56,13 @@ export default function App() {
 
     const shouldPlay = appPhase === 'start' || appPhase === 'victory'
     if (shouldPlay) {
+      if (appPhase === 'start') {
+        audio.loop = false
+        audio.currentTime = 0
+      } else {
+        audio.loop = true
+        audio.currentTime = 0
+      }
       tryPlayMusic()
       return
     }
@@ -62,6 +71,23 @@ export default function App() {
     audio.currentTime = 0
     setMusicNeedsUnlock(false)
   }, [appPhase, tryPlayMusic])
+
+  // On start screen, only allow a 10-second music preview.
+  useEffect(() => {
+    const audio = musicRef.current
+    if (!audio) return
+    if (appPhase !== 'start') return
+
+    const stopAtPreviewEnd = () => {
+      if (audio.currentTime >= START_PREVIEW_SECONDS) {
+        audio.pause()
+        audio.currentTime = START_PREVIEW_SECONDS
+      }
+    }
+
+    audio.addEventListener('timeupdate', stopAtPreviewEnd)
+    return () => audio.removeEventListener('timeupdate', stopAtPreviewEnd)
+  }, [appPhase])
 
   useEffect(() => {
     if (!musicNeedsUnlock) return

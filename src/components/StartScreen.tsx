@@ -99,6 +99,9 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
           <p className="text-slate-500 text-xs mt-3">
             Recurso creado por Sergio Jodral, profesor de matematicas usando tecnologia IA.
           </p>
+          <p className="text-cyan-300 text-xs mt-2 font-semibold">
+            Si quieres escuchar la cancion completa, completa el scape room.
+          </p>
         </motion.div>
 
         {/* Method legend */}
