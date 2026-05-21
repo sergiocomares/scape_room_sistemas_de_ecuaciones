@@ -96,6 +96,9 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
           <p className="text-slate-400 text-sm mt-3">
             7 salas · 3 métodos · 1 misión. ¿Estás preparado/a?
           </p>
+          <p className="text-slate-500 text-xs mt-3">
+            Recurso creado por Sergio Jodral, profesor de matematicas usando tecnologia IA.
+          </p>
         </motion.div>
 
         {/* Method legend */}
