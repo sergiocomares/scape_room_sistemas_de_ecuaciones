@@ -13,6 +13,7 @@ interface Props {
 export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
   const [xVal, setXVal] = useState('');
   const [yVal, setYVal] = useState('');
+  const [activeField, setActiveField] = useState<'x' | 'y'>('x');
   const [attempts, setAttempts] = useState(0);
   const [feedback, setFeedback] = useState<'idle' | 'correct' | 'wrong' | 'revealed'>('idle');
   const [shakeX, setShakeX] = useState(false);
@@ -61,6 +62,30 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
     if (e.key === 'Enter') check();
   }
 
+  function appendToActive(char: string): void {
+    if (activeField === 'x') {
+      setXVal((prev) => prev + char);
+      return;
+    }
+    setYVal((prev) => prev + char);
+  }
+
+  function backspaceActive(): void {
+    if (activeField === 'x') {
+      setXVal((prev) => prev.slice(0, -1));
+      return;
+    }
+    setYVal((prev) => prev.slice(0, -1));
+  }
+
+  function clearActive(): void {
+    if (activeField === 'x') {
+      setXVal('');
+      return;
+    }
+    setYVal('');
+  }
+
   const attemptsLeft = MAX_ATTEMPTS - attempts;
 
   return (
@@ -90,10 +115,12 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
           <input
             type="text"
             inputMode="numeric"
-            className="input-neon text-center text-xl font-bold"
+            className={`input-neon text-center text-xl font-bold ${activeField === 'x' ? 'ring-2 ring-cyan-500/70' : ''}`}
             placeholder="?"
             value={xVal}
             onChange={(e) => setXVal(e.target.value)}
+            onFocus={() => setActiveField('x')}
+            onClick={() => setActiveField('x')}
             onKeyDown={handleKey}
             disabled={feedback === 'correct' || feedback === 'revealed'}
           />
@@ -111,15 +138,87 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
           <input
             type="text"
             inputMode="numeric"
-            className="input-neon text-center text-xl font-bold"
+            className={`input-neon text-center text-xl font-bold ${activeField === 'y' ? 'ring-2 ring-purple-500/70' : ''}`}
             placeholder="?"
             value={yVal}
             onChange={(e) => setYVal(e.target.value)}
+            onFocus={() => setActiveField('y')}
+            onClick={() => setActiveField('y')}
             onKeyDown={handleKey}
             disabled={feedback === 'correct' || feedback === 'revealed'}
           />
         </motion.div>
       </div>
+
+      {/* Small numeric keypad */}
+      {feedback !== 'correct' && feedback !== 'revealed' && (
+        <div className="rounded-xl border border-slate-700 bg-slate-900/60 p-3">
+          <p className="text-xs text-slate-400 font-mono mb-2">
+            Teclado numerico (campo activo: {activeField === 'x' ? 'x' : 'y'})
+          </p>
+
+          <div className="grid grid-cols-3 gap-2">
+            {['7', '8', '9', '4', '5', '6', '1', '2', '3'].map((key) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => appendToActive(key)}
+                className="py-2 rounded-md border border-cyan-800/50 text-cyan-200 font-mono bg-cyan-950/20 hover:bg-cyan-900/30"
+              >
+                {key}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-3 gap-2 mt-2">
+            <button
+              type="button"
+              onClick={() => appendToActive('-')}
+              className="py-2 rounded-md border border-purple-800/50 text-purple-200 font-mono bg-purple-950/20 hover:bg-purple-900/30"
+            >
+              -
+            </button>
+            <button
+              type="button"
+              onClick={() => appendToActive('0')}
+              className="py-2 rounded-md border border-cyan-800/50 text-cyan-200 font-mono bg-cyan-950/20 hover:bg-cyan-900/30"
+            >
+              0
+            </button>
+            <button
+              type="button"
+              onClick={() => appendToActive('.')}
+              className="py-2 rounded-md border border-purple-800/50 text-purple-200 font-mono bg-purple-950/20 hover:bg-purple-900/30"
+            >
+              .
+            </button>
+          </div>
+
+          <div className="grid grid-cols-3 gap-2 mt-2">
+            <button
+              type="button"
+              onClick={backspaceActive}
+              className="py-2 rounded-md border border-orange-700/50 text-orange-300 font-mono bg-orange-950/20 hover:bg-orange-900/25"
+            >
+              Borrar
+            </button>
+            <button
+              type="button"
+              onClick={clearActive}
+              className="py-2 rounded-md border border-red-700/50 text-red-300 font-mono bg-red-950/20 hover:bg-red-900/25"
+            >
+              Limpiar
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveField(activeField === 'x' ? 'y' : 'x')}
+              className="py-2 rounded-md border border-slate-700 text-slate-200 font-mono bg-slate-800/60 hover:bg-slate-700/60"
+            >
+              Cambiar
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Check button */}
       {feedback !== 'correct' && feedback !== 'revealed' && (
