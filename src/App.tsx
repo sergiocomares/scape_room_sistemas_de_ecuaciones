@@ -8,6 +8,7 @@ import ProgressBar from './components/ProgressBar'
 import RoomCard from './components/RoomCard'
 import VictoryScreen from './components/VictoryScreen'
 import LanguageTabs from './components/LanguageTabs'
+import QuickRestartTab from './components/QuickRestartTab'
 import { playErrorSound, playSuccessSound } from './utils/sound'
 
 export default function App() {
@@ -99,8 +100,13 @@ export default function App() {
 
   const handleRestart = useCallback(() => {
     setAppPhase('start')
+    setRoomIndex(0)
+    setRoomPhase('intro')
+    setSelectedMethod(null)
+    setBadges([])
     setTimerActive(false)
     setElapsedTime(0)
+    setMusicNeedsUnlock(false)
   }, [])
 
   // Method selected → show feedback  
@@ -154,6 +160,7 @@ export default function App() {
   // ── Render ──
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg-dark)' }}>
+      <QuickRestartTab lang={lang} onRestart={handleRestart} />
       <LanguageTabs lang={lang} onChange={setLang} />
       <AnimatePresence mode="wait">
 
