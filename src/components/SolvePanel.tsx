@@ -94,6 +94,9 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
         <p className="text-slate-300 text-sm font-mono mb-1">
           Introduce la solucion del sistema / Enter the system solution:
         </p>
+        <p className="text-slate-500 text-xs font-mono mb-1">
+          DUA: Comprueba mentalmente en las dos ecuaciones antes de validar. / UDL: Mentally check both equations before submitting.
+        </p>
         {attemptsLeft > 0 && feedback !== 'revealed' && (
           <p className="text-slate-500 text-xs font-mono">
             {attempts > 0 ? `Intento ${attempts + 1} de ${MAX_ATTEMPTS} / Attempt ${attempts + 1} of ${MAX_ATTEMPTS}` : `Tienes ${MAX_ATTEMPTS} intentos / You have ${MAX_ATTEMPTS} attempts`}
@@ -299,7 +302,7 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
                 fontFamily: "'Orbitron', sans-serif",
               }}
             >
-              CONTINUAR / CONTINUE ->
+              CONTINUAR / CONTINUE
             </motion.button>
           </motion.div>
         )}

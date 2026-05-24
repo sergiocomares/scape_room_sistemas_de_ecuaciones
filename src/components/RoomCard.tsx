@@ -31,24 +31,24 @@ const PHASE_TITLES: Record<RoomPhase, string> = {
 
 const DUA_STEPS: Record<RoomPhase, string[]> = {
   intro: [
-    '1) Lee el reto y subraya datos clave / Read and highlight key data',
+    '1) Lee el reto y marca datos clave / Read and mark key data',
     '2) Identifica variables x e y / Identify variables x and y',
-    '3) Decide el siguiente paso / Decide your next step',
+    '3) Explica tu plan en una frase / Explain your plan in one sentence',
   ],
   write_system: [
     '1) Traduce el texto a ecuaciones / Translate text into equations',
     '2) Comprueba signos y coeficientes / Check signs and coefficients',
-    '3) Valida tu sistema / Validate your system',
+    '3) Valida tu sistema y corrige / Validate and fix your system',
   ],
   choose_method: [
     '1) Observa la forma del sistema / Observe system structure',
     '2) Compara los tres metodos / Compare the three methods',
-    '3) Elige y justifica mentalmente / Choose and justify mentally',
+    '3) Elige y justifica con una razon / Choose and justify with one reason',
   ],
   solve: [
     '1) Resuelve paso a paso / Solve step by step',
     '2) Revisa el resultado en ambas ecuaciones / Check both equations',
-    '3) Escribe x e y con cuidado / Enter x and y carefully',
+    '3) Escribe x e y y revisa unidades / Enter x and y and check units',
   ],
   success: [
     '1) Revisa lo aprendido / Review what you learned',
@@ -128,10 +128,13 @@ export default function RoomCard({
       <div className="p-6 space-y-5">
         <div className="bg-slate-900/60 border border-slate-700/50 rounded-xl p-4 space-y-3">
           <p className="text-cyan-300 text-xs font-mono uppercase tracking-widest">
-            DUA - Objetivo / Goal
+            DUA - Objetivo 2 ESO / Grade 8 Goal
           </p>
           <p className="text-slate-300 text-sm font-mono leading-relaxed">
             Comprender el sistema, elegir una estrategia eficiente y justificar la solucion. / Understand the system, choose an efficient strategy, and justify the solution.
+          </p>
+          <p className="text-slate-400 text-xs font-mono leading-relaxed">
+            Apoyos: representacion visual, texto guiado, pistas por niveles y verificacion final. / Supports: visual representation, guided text, tiered hints, and final check.
           </p>
           <div>
             <p className="text-slate-400 text-xs font-mono mb-2">Pasos guiados / Guided steps</p>
@@ -184,7 +187,7 @@ export default function RoomCard({
               {room.type === 'equation' && (
                 <SystemDisplay
                   latex={room.latex}
-                  title="SISTEMA DE ECUACIONES"
+                  title="SISTEMA DE ECUACIONES / SYSTEM OF EQUATIONS"
                 />
               )}
 
@@ -257,7 +260,7 @@ export default function RoomCard({
               className="space-y-5"
             >
               {/* System display (compact) */}
-              <SystemDisplay latex={room.latex} title="SISTEMA" />
+              <SystemDisplay latex={room.latex} title="SISTEMA / SYSTEM" />
 
               {/* Method selector or feedback */}
               {!selectedMethod ? (
@@ -288,7 +291,7 @@ export default function RoomCard({
               className="space-y-5"
             >
               {/* System display (compact) */}
-              <SystemDisplay latex={room.latex} title="SISTEMA A RESOLVER" />
+              <SystemDisplay latex={room.latex} title="SISTEMA A RESOLVER / SYSTEM TO SOLVE" />
 
               {/* Method reminder */}
               {selectedMethod && (

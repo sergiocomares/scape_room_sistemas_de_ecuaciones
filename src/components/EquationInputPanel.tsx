@@ -92,6 +92,9 @@ export default function EquationInputPanel({ expectedEquations, onSuccess }: Pro
         <p className="text-slate-300 text-sm font-mono">
           Escribe las dos ecuaciones del enunciado usando el teclado basico. / Write both equations from the statement using the basic keypad.
         </p>
+        <p className="text-slate-400 text-xs font-mono mt-2">
+          DUA: Primero define x e y, luego traduce cada frase a una ecuacion. / UDL: First define x and y, then translate each sentence into an equation.
+        </p>
       </div>
 
       <div className="grid gap-3">
@@ -184,7 +187,7 @@ export default function EquationInputPanel({ expectedEquations, onSuccess }: Pro
             className="border-neon-red bg-red-950/40 rounded-xl p-3 text-center"
           >
             <p className="neon-red text-sm font-mono">
-              ❌ El sistema no coincide con el enunciado. Revisa coeficientes y signos. / The system does not match the statement. Check coefficients and signs.
+              ❌ El sistema no coincide con el enunciado. Revisa variables, coeficientes y signos. / The system does not match the statement. Check variables, coefficients, and signs.
             </p>
           </motion.div>
         )}

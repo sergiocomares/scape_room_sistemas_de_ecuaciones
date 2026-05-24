@@ -94,7 +94,7 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
             podras desbloquear las puertas. / you will unlock the doors.
           </p>
           <p className="text-slate-400 text-sm mt-3">
-            7 salas · 3 metodos · 1 mision. Estas preparado/a? / 7 rooms · 3 methods · 1 mission. Are you ready?
+            7 salas · 3 metodos · 1 mision · Nivel 2 ESO. Estas preparado/a? / 7 rooms · 3 methods · 1 mission · Grade 8 level. Are you ready?
           </p>
           <p className="text-slate-500 text-xs mt-3">
             Recurso creado por Sergio Jodral, profesor de matematicas usando tecnologia IA.
@@ -116,6 +116,9 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
             <p className="text-slate-300 text-xs leading-relaxed">
               3) Comprobar la solucion en contexto / Check the solution in context.
             </p>
+            <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+              Apoyos DUA: pistas progresivas, pasos guiados y teclado matematico. / UDL supports: progressive hints, guided steps, and math keypad.
+            </p>
           </div>
         </motion.div>
 
@@ -127,7 +130,6 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
           className="flex justify-center gap-3 mb-8 flex-wrap"
         >
           {[
-            { label: 'Sustitución', color: 'text-cyan-400 border-cyan-700' },
             { label: 'Sustitucion / Substitution', color: 'text-cyan-400 border-cyan-700' },
             { label: 'Igualacion / Equalization', color: 'text-purple-400 border-purple-700' },
             { label: 'Reduccion / Elimination', color: 'text-green-400 border-green-700' },

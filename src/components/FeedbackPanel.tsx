@@ -80,7 +80,7 @@ export default function FeedbackPanel({ chosenMethod, message, quality, onContin
           fontFamily: "'Orbitron', sans-serif",
         }}
       >
-        CONTINUAR -> RESOLVER / CONTINUE -> SOLVE
+        CONTINUAR A RESOLVER / CONTINUE TO SOLVE
       </motion.button>
     </motion.div>
   );

@@ -51,7 +51,10 @@ export default function MethodSelector({ onSelect, disabled = false }: Props) {
   return (
     <div className="space-y-3">
       <p className="text-slate-300 text-sm font-mono text-center mb-2">
-        Que metodo consideras mas adecuado para este sistema? / Which method is most suitable for this system?
+        Que metodo es mas eficiente para este sistema de 2 ESO? / Which method is most efficient for this Grade 8 system?
+      </p>
+      <p className="text-slate-500 text-xs font-mono text-center -mt-1 mb-2">
+        DUA: Puedes comparar estructura, pasos y calculo antes de decidir. / UDL: Compare structure, steps, and workload before deciding.
       </p>
       {OPTIONS.map((opt, i) => (
         <motion.button
