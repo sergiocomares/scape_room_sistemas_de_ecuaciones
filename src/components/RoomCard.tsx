@@ -182,6 +182,9 @@ export default function RoomCard({
               ? 'Comprender el sistema, elegir una estrategia eficiente y justificar la solución.'
               : 'Understand the system, choose an efficient strategy, and justify the solution.'}
           </p>
+          <p className="text-slate-400 text-xs font-mono leading-relaxed">
+            Apoyos: representacion visual, texto guiado, pistas por niveles y verificacion final. / Supports: visual representation, guided text, tiered hints, and final check.
+          </p>
           <div>
             <p className="text-slate-400 text-xs font-mono mb-2">{isEs ? 'Pasos guiados' : 'Guided steps'}</p>
             <ul className="space-y-1">

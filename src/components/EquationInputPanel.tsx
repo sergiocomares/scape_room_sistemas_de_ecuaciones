@@ -97,6 +97,9 @@ export default function EquationInputPanel({ expectedEquations, lang, onSuccess 
             ? 'Escribe las dos ecuaciones del enunciado usando el teclado básico.'
             : 'Write both equations from the statement using the basic keypad.'}
         </p>
+        <p className="text-slate-400 text-xs font-mono mt-2">
+          DUA: Primero define x e y, luego traduce cada frase a una ecuacion. / UDL: First define x and y, then translate each sentence into an equation.
+        </p>
       </div>
 
       <div className="grid gap-3">

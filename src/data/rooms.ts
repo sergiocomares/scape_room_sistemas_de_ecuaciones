@@ -23,25 +23,25 @@ export const ROOMS: RoomData[] = [
     solution: { x: -4, y: 2 },
     varLabels: { x: 'x', y: 'y' },
     hints: [
-      '🔍 Observa si alguna variable ya está completamente despejada en alguna ecuación.',
-      '💡 La segunda ecuación tiene y despejada: y = 2x + 10. ¿Puedes usarla directamente en la primera?',
-      '📐 Sustituye y = 2x + 10 en 2y = x + 8: queda 2(2x + 10) = x + 8. Despeja x.',
+      '🔍 Observa si alguna variable ya esta despejada. / Look for a variable that is already isolated.',
+      '💡 La segunda ecuacion tiene y despejada: y = 2x + 10. / The second equation already isolates y: y = 2x + 10.',
+      '📐 Sustituye y = 2x + 10 en 2y = x + 8: 2(2x + 10) = x + 8. / Substitute and solve for x.',
     ],
     methodFeedback: {
       sustitucion: {
         quality: 'best',
         message:
-          '✅ ¡Excelente elección! La segunda ecuación tiene y despejada directamente. La sustitución es el método más eficiente aquí.',
+          '✅ Excelente eleccion: y ya esta despejada en la segunda ecuacion, asi que sustitucion es el camino mas corto. / Great choice: y is already isolated, so substitution is the shortest path.',
       },
       igualacion: {
         quality: 'valid',
         message:
-          '⚠️ Se puede usar igualación, pero requiere más pasos. Fíjate en que y ya está despejada en una ecuación: la sustitución directa es más rápida.',
+          '⚠️ Funciona, pero requiere mas pasos. / It works, but it takes more steps. Aqui sustitucion es mas directa porque y ya esta despejada. / Here substitution is more direct because y is already isolated.',
       },
       reduccion: {
         quality: 'wrong',
         message:
-          '❌ Para la reducción se necesitan coeficientes opuestos en la misma variable. Aquí las ecuaciones no están preparadas para eso. Busca variables ya despejadas.',
+          '❌ En este sistema no hay coeficientes opuestos listos para reduccion. / This system has no ready opposite coefficients for elimination. Busca variable despejada y usa sustitucion. / Look for an isolated variable and use substitution.',
       },
     },
   },
@@ -67,25 +67,25 @@ export const ROOMS: RoomData[] = [
     solution: { x: 3, y: 4 },
     varLabels: { x: 'x', y: 'y' },
     hints: [
-      '🔍 Fíjate en los coeficientes de y: uno es −1 y el otro es +1. ¿Qué ocurre si sumas las dos ecuaciones?',
-      '💡 Si sumas ambas ecuaciones, los términos con y se cancelan: (5x − y) + (3x + y) = 11 + 13.',
-      '📐 Obtienes 8x = 24, es decir x = 3. Ahora sustituye para hallar y.',
+      '🔍 Mira los coeficientes de y: -1 y +1. / Look at y coefficients: -1 and +1.',
+      '💡 Si sumas las ecuaciones, y se cancela. / If you add the equations, y cancels out.',
+      '📐 Obtienes 8x = 24, luego x = 3. / You get 8x = 24, so x = 3. Sustituye para hallar y. / Substitute to find y.',
     ],
     methodFeedback: {
       reduccion: {
         quality: 'best',
         message:
-          '✅ ¡Brillante! Los coeficientes de y son −1 y +1. Al sumar las ecuaciones, y desaparece instantáneamente. Reducción perfecta.',
+          '✅ Brillante: con -1 y +1, y desaparece al sumar. / Brilliant: with -1 and +1, y disappears when adding. Reduccion es perfecta aqui. / Elimination is perfect here.',
       },
       sustitucion: {
         quality: 'valid',
         message:
-          '⚠️ Funciona, pero primero tienes que despejar una variable. ¿No detectas algo especial en los coeficientes de y en ambas ecuaciones?',
+          '⚠️ Funciona, pero primero hay que despejar. / It works, but you must isolate first. Aqui reduccion es mas rapida por los coeficientes de y. / Here elimination is faster due to y coefficients.',
       },
       igualacion: {
         quality: 'valid',
         message:
-          '⚠️ Posible, aunque requiere despejar y en ambas y luego igualar. Compara los coeficientes de y: hay una forma mucho más directa.',
+          '⚠️ Es posible, pero mas largo. / It is possible, but longer. Compara coeficientes de y y usa reduccion directa. / Compare y coefficients and use direct elimination.',
       },
     },
   },
@@ -111,25 +111,25 @@ export const ROOMS: RoomData[] = [
     solution: { x: 11, y: 4 },
     varLabels: { x: 'x', y: 'y' },
     hints: [
-      '🔍 Las dos ecuaciones empiezan por "x = ...". ¿Qué puedes hacer con dos expresiones iguales a x?',
-      '💡 Si x = 2y + 3 y también x = 3y − 1, entonces 2y + 3 = 3y − 1. ¡Iguala las expresiones!',
-      '📐 2y + 3 = 3y − 1 → 3 + 1 = 3y − 2y → y = 4. Sustituye en cualquier ecuación para hallar x.',
+      '🔍 Las dos ecuaciones empiezan por x = ... / Both equations start with x = ...',
+      '💡 Si ambas son iguales a x, puedes igualarlas entre si. / If both are equal to x, you can set them equal.',
+      '📐 2y + 3 = 3y - 1, resuelve y y luego x. / Solve for y, then substitute to get x.',
     ],
     methodFeedback: {
       igualacion: {
         quality: 'best',
         message:
-          '✅ ¡Exactamente! Ambas ecuaciones tienen x despejada. Igualando las dos expresiones de x obtienes y directamente. Método perfecto.',
+          '✅ Exacto: x ya esta despejada en ambas ecuaciones. / Exactly: x is already isolated in both equations. Igualar es el metodo mas directo aqui. / Equalization is the most direct method here.',
       },
       sustitucion: {
         quality: 'valid',
         message:
-          '⚠️ También funciona, pero ¿no ves algo especial? Las dos ecuaciones empiezan por "x = ...". Igualando te ahorras un paso.',
+          '⚠️ Tambien funciona, pero hay una pista clara: x = ... en ambas. / It also works, but there is a clear clue: x = ... in both. Igualacion ahorra pasos. / Equalization saves steps.',
       },
       reduccion: {
         quality: 'wrong',
         message:
-          '❌ Para la reducción necesitas coeficientes opuestos de la misma variable. Aquí las ecuaciones están en forma "x = expresión". Busca otra estrategia.',
+          '❌ Aqui no esta preparada para reduccion directa. / This is not set up for direct elimination. Al estar en forma x = expresion, conviene igualar. / Since both are x = expression, equalization is better.',
       },
     },
   },
@@ -155,25 +155,25 @@ export const ROOMS: RoomData[] = [
     solution: { x: 2, y: 1 },
     varLabels: { x: 'x', y: 'y' },
     hints: [
-      '🔍 Mira la segunda ecuación: x − y = 1. ¿Qué variable puedes despejar fácilmente?',
-      '💡 De x − y = 1 se despeja x con un solo paso: x = y + 1. Sustituye eso en la primera ecuación.',
-      '📐 Sustituye x = y + 1 en 3x + 2y = 8: 3(y + 1) + 2y = 8 → 5y = 5 → y = 1. Luego x = 2.',
+      '🔍 Mira x - y = 1. / Look at x - y = 1. Que variable se despeja facil? / Which variable is easy to isolate?',
+      '💡 De x - y = 1 sale x = y + 1 en un paso. / From x - y = 1, you get x = y + 1 in one step.',
+      '📐 Sustituye en 3x + 2y = 8 y resuelve. / Substitute into 3x + 2y = 8 and solve.',
     ],
     methodFeedback: {
       sustitucion: {
         quality: 'best',
         message:
-          '✅ ¡Muy bien! La segunda ecuación permite despejar x en un solo paso. La sustitución directa es la estrategia más eficiente.',
+          '✅ Muy bien: la segunda ecuacion permite despejar x en un paso. / Great: the second equation isolates x in one step. Sustitucion es la estrategia mas eficiente. / Substitution is the most efficient strategy.',
       },
       reduccion: {
         quality: 'valid',
         message:
-          '⚠️ Podría funcionar multiplicando para igualar coeficientes, pero requiere más cálculo. La segunda ecuación ofrece un despeje mucho más directo.',
+          '⚠️ Puede funcionar, pero exige mas calculo previo. / It can work, but needs more setup. Aqui conviene usar el despeje directo de la segunda ecuacion. / Here the direct isolation from the second equation is better.',
       },
       igualacion: {
         quality: 'valid',
         message:
-          '⚠️ Habría que despejar la misma variable en ambas ecuaciones. Fíjate en la segunda: se puede despejar x con un solo paso, lo que hace más directa la sustitución.',
+          '⚠️ Es posible, pero hay que despejar en ambas ecuaciones. / It is possible, but you must isolate in both equations. Como x se despeja rapido en la segunda, sustitucion es mas corta. / Since x isolates quickly in the second, substitution is shorter.',
       },
     },
   },
@@ -206,25 +206,25 @@ export const ROOMS: RoomData[] = [
     solution: { x: 3, y: 2 },
     varLabels: { x: { es: 'bolígrafo (€)', en: 'pen (€)' }, y: { es: 'cuaderno (€)', en: 'notebook (€)' } },
     hints: [
-      '🔍 Define las variables: x = precio de un bolígrafo, y = precio de un cuaderno.',
-      '💡 Traduce las frases: "2 bolígrafos y 1 cuaderno cuestan 8€" → 2x + y = 8. ¿Y la segunda frase?',
-      '📐 El sistema es: 2x + y = 8 y x + y = 5. Compara los coeficientes de y: son iguales, ¡la resta los elimina!',
+      '🔍 Define variables: x = precio del boligrafo, y = precio del cuaderno. / Define variables: x = pen price, y = notebook price.',
+      '💡 Traduce cada frase a ecuacion. / Translate each sentence into an equation.',
+      '📐 2x + y = 8 y x + y = 5. Los coeficientes de y son iguales. / y coefficients are equal, so subtraction eliminates y.',
     ],
     methodFeedback: {
       reduccion: {
         quality: 'best',
         message:
-          '✅ ¡Perfecto! Los coeficientes de y son ambos 1. Restando la segunda ecuación de la primera: (2x + y) − (x + y) = 8 − 5, obtienes x = 3 directamente.',
+          '✅ Perfecto: los coeficientes de y son 1 y 1. / Perfect: y coefficients are 1 and 1. Al restar, y se elimina y obtienes x directo. / Subtract to eliminate y and get x directly.',
       },
       sustitucion: {
         quality: 'valid',
         message:
-          '⚠️ Funciona: puedes despejar y en la segunda ecuación y sustituir. Pero fíjate en que los coeficientes de y son iguales: ¡la resta los cancela sin despejar nada!',
+          '⚠️ Funciona, pero requiere despejar antes. / It works, but requires isolating first. Aqui la resta directa es mas rapida. / Here direct subtraction is faster.',
       },
       igualacion: {
         quality: 'valid',
         message:
-          '⚠️ Posible, pero requiere despejar y en ambas ecuaciones. Hay una forma más directa: los coeficientes de y coinciden, ¿qué pasa si restas las ecuaciones?',
+          '⚠️ Es posible, aunque mas largo. / It is possible, though longer. Como y tiene el mismo coeficiente, prueba reduccion por resta. / Since y has the same coefficient, try elimination by subtraction.',
       },
     },
   },

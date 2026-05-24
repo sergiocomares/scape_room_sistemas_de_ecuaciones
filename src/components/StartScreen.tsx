@@ -124,6 +124,9 @@ export default function StartScreen({ onStart, lang, musicNeedsUnlock = false, o
             <p className="text-slate-300 text-xs leading-relaxed">
               {isEs ? '3) Comprobar la solución en contexto.' : '3) Check the solution in context.'}
             </p>
+            <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+              Apoyos DUA: pistas progresivas, pasos guiados y teclado matematico. / UDL supports: progressive hints, guided steps, and math keypad.
+            </p>
           </div>
         </motion.div>
 

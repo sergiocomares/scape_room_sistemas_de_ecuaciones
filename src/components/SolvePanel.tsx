@@ -100,6 +100,9 @@ export default function SolvePanel({ solution, varLabels, lang, onSuccess }: Pro
         <p className="text-slate-300 text-sm font-mono mb-1">
           {isEs ? 'Introduce la solución del sistema:' : 'Enter the system solution:'}
         </p>
+        <p className="text-slate-500 text-xs font-mono mb-1">
+          DUA: Comprueba mentalmente en las dos ecuaciones antes de validar. / UDL: Mentally check both equations before submitting.
+        </p>
         {attemptsLeft > 0 && feedback !== 'revealed' && (
           <p className="text-slate-500 text-xs font-mono">
             {attempts > 0
