@@ -16,7 +16,7 @@ export default function HintBox({ hints }: Props) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <span className="text-yellow-400 text-xs font-bold tracking-widest uppercase font-mono">
-          💡 Pistas
+          💡 Pistas / Hints
         </span>
         <span className="text-slate-500 text-xs font-mono">
           {revealed}/{hints.length}
@@ -54,13 +54,13 @@ export default function HintBox({ hints }: Props) {
             color: '#facc15',
           }}
         >
-          {revealed === 0 ? '🔍 Ver primera pista' : `🔍 Pista ${revealed + 1} de ${hints.length}`}
+          {revealed === 0 ? '🔍 Ver primera pista / Show first hint' : `🔍 Pista ${revealed + 1} de ${hints.length} / Hint ${revealed + 1} of ${hints.length}`}
         </motion.button>
       )}
 
       {revealed === hints.length && (
         <p className="text-center text-yellow-600 text-xs font-mono mt-1">
-          Has visto todas las pistas disponibles.
+          Has visto todas las pistas disponibles. / You have viewed all available hints.
         </p>
       )}
     </div>

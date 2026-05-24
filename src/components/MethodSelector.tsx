@@ -15,27 +15,27 @@ interface MethodOption {
 const OPTIONS: MethodOption[] = [
   {
     id: 'sustitucion',
-    label: 'Sustitución',
+    label: 'Sustitucion / Substitution',
     icon: '🔄',
-    description: 'Despejo una variable y la sustituyo en la otra ecuación.',
+    description: 'Despejo una variable y la sustituyo en la otra ecuacion. / Isolate one variable and substitute it into the other equation.',
     color: 'text-cyan-400',
     borderClass: 'border-cyan-700/60 hover:border-cyan-400',
     hoverBg: 'rgba(0,212,255,0.08)',
   },
   {
     id: 'igualacion',
-    label: 'Igualación',
+    label: 'Igualacion / Equalization',
     icon: '⚖️',
-    description: 'Despejo la misma variable en ambas ecuaciones y las igualo.',
+    description: 'Despejo la misma variable en ambas ecuaciones y las igualo. / Isolate the same variable in both equations and set them equal.',
     color: 'text-purple-400',
     borderClass: 'border-purple-700/60 hover:border-purple-400',
     hoverBg: 'rgba(139,92,246,0.08)',
   },
   {
     id: 'reduccion',
-    label: 'Reducción',
+    label: 'Reduccion / Elimination',
     icon: '➕',
-    description: 'Sumo o resto las ecuaciones para eliminar una variable.',
+    description: 'Sumo o resto las ecuaciones para eliminar una variable. / Add or subtract equations to eliminate one variable.',
     color: 'text-green-400',
     borderClass: 'border-green-700/60 hover:border-green-400',
     hoverBg: 'rgba(0,255,136,0.08)',
@@ -51,7 +51,7 @@ export default function MethodSelector({ onSelect, disabled = false }: Props) {
   return (
     <div className="space-y-3">
       <p className="text-slate-300 text-sm font-mono text-center mb-2">
-        ¿Qué método consideras más adecuado para este sistema?
+        Que metodo consideras mas adecuado para este sistema? / Which method is most suitable for this system?
       </p>
       {OPTIONS.map((opt, i) => (
         <motion.button

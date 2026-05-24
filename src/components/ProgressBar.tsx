@@ -33,7 +33,7 @@ export default function ProgressBar({ total, completed, badges, elapsedTime }: P
             ⏱ {formatTime(elapsedTime)}
           </span>
           <span className="text-slate-400 font-mono">
-            {completed}/{total} salas
+            {completed}/{total} salas / rooms
           </span>
         </div>
 
@@ -60,7 +60,7 @@ export default function ProgressBar({ total, completed, badges, elapsedTime }: P
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 15 }}
                 className="text-lg"
-                title={`Insignia ${i + 1}`}
+                title={`Insignia / Badge ${i + 1}`}
               >
                 {badge}
               </motion.span>

@@ -77,7 +77,7 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
           transition={{ delay: 0.4 }}
           className="text-cyan-300 text-sm tracking-widest uppercase mb-8 opacity-70"
         >
-          Sistemas de Ecuaciones · 2.º ESO
+          Sistemas de Ecuaciones / Systems of Equations · 2.º ESO
         </motion.p>
 
         {/* Narrative */}
@@ -89,19 +89,34 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
         >
           <p className="text-cyan-100 text-sm sm:text-base leading-relaxed">
             <span className="neon-red font-bold">⚠ ALERTA DE SISTEMA:</span>{' '}
-            Una inteligencia artificial ha bloqueado el instituto.{' '}
-            <span className="neon-cyan">Solo resolviendo sistemas de ecuaciones</span>{' '}
-            podrás desbloquear las puertas.
+            Una inteligencia artificial ha bloqueado el instituto. / An AI has locked down the school.{' '}
+            <span className="neon-cyan">Solo resolviendo sistemas de ecuaciones</span>{' '} / Only by solving systems of equations{' '}
+            podras desbloquear las puertas. / you will unlock the doors.
           </p>
           <p className="text-slate-400 text-sm mt-3">
-            7 salas · 3 métodos · 1 misión. ¿Estás preparado/a?
+            7 salas · 3 metodos · 1 mision. Estas preparado/a? / 7 rooms · 3 methods · 1 mission. Are you ready?
           </p>
           <p className="text-slate-500 text-xs mt-3">
             Recurso creado por Sergio Jodral, profesor de matematicas usando tecnologia IA.
           </p>
           <p className="text-cyan-300 text-xs mt-2 font-semibold">
-            Si quieres escuchar la cancion completa, completa el scape room.
+            Si quieres escuchar la cancion completa, completa el scape room. / Complete the escape room to hear the full song.
           </p>
+
+          <div className="mt-4 border border-slate-700/60 rounded-lg p-3 bg-slate-950/50">
+            <p className="text-cyan-300 text-xs font-mono uppercase tracking-widest mb-2">
+              DUA - Objetivos de aprendizaje / Learning goals
+            </p>
+            <p className="text-slate-300 text-xs leading-relaxed">
+              1) Representar un problema con ecuaciones / Represent a problem with equations.
+            </p>
+            <p className="text-slate-300 text-xs leading-relaxed">
+              2) Elegir el metodo mas eficiente / Choose the most efficient method.
+            </p>
+            <p className="text-slate-300 text-xs leading-relaxed">
+              3) Comprobar la solucion en contexto / Check the solution in context.
+            </p>
+          </div>
         </motion.div>
 
         {/* Method legend */}
@@ -113,8 +128,9 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
         >
           {[
             { label: 'Sustitución', color: 'text-cyan-400 border-cyan-700' },
-            { label: 'Igualación', color: 'text-purple-400 border-purple-700' },
-            { label: 'Reducción', color: 'text-green-400 border-green-700' },
+            { label: 'Sustitucion / Substitution', color: 'text-cyan-400 border-cyan-700' },
+            { label: 'Igualacion / Equalization', color: 'text-purple-400 border-purple-700' },
+            { label: 'Reduccion / Elimination', color: 'text-green-400 border-green-700' },
           ].map((m) => (
             <span
               key={m.label}
@@ -141,7 +157,7 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
             fontFamily: "'Orbitron', sans-serif",
           }}
         >
-          ▶ COMENZAR MISIÓN
+          ▶ COMENZAR MISION / START MISSION
         </motion.button>
 
         {musicNeedsUnlock && (
@@ -159,7 +175,7 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
               fontFamily: "'Orbitron', sans-serif",
             }}
           >
-            🎵 ACTIVAR MUSICA
+            🎵 ACTIVAR MUSICA / ENABLE MUSIC
           </motion.button>
         )}
       </motion.div>
@@ -171,7 +187,7 @@ export default function StartScreen({ onStart, musicNeedsUnlock = false, onEnabl
         transition={{ delay: 1 }}
         className="mt-6 text-slate-600 text-xs tracking-wider"
       >
-        Matemáticas · 2.º ESO · Sistemas de Ecuaciones
+        Matematicas · 2.º ESO · Sistemas de Ecuaciones / Systems of Equations
       </motion.p>
     </div>
   );

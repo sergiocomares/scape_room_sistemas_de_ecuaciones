@@ -3,26 +3,26 @@ import { motion } from 'framer-motion';
 import type { Method, MethodQuality } from '../types';
 
 const METHOD_LABELS: Record<Method, string> = {
-  sustitucion: 'Sustitución',
-  igualacion: 'Igualación',
-  reduccion: 'Reducción',
+  sustitucion: 'Sustitucion / Substitution',
+  igualacion: 'Igualacion / Equalization',
+  reduccion: 'Reduccion / Elimination',
 };
 
 const QUALITY_STYLES: Record<MethodQuality, { borderClass: string; bgClass: string; label: string }> = {
   best: {
     borderClass: 'border-neon-green',
     bgClass: 'bg-green-950/60',
-    label: 'MÉTODO ÓPTIMO',
+    label: 'METODO OPTIMO / BEST CHOICE',
   },
   valid: {
     borderClass: 'border-neon-orange',
     bgClass: 'bg-yellow-950/60',
-    label: 'VÁLIDO PERO NO ÓPTIMO',
+    label: 'VALIDO PERO NO OPTIMO / VALID, NOT BEST',
   },
   wrong: {
     borderClass: 'border-neon-red',
     bgClass: 'bg-red-950/60',
-    label: 'NO RECOMENDADO',
+    label: 'NO RECOMENDADO / NOT RECOMMENDED',
   },
 };
 
@@ -46,7 +46,7 @@ export default function FeedbackPanel({ chosenMethod, message, quality, onContin
       {/* Method chosen label */}
       <div className="flex items-center gap-3">
         <span className="text-slate-400 text-xs font-mono uppercase tracking-widest">
-          Método elegido:
+          Metodo elegido / Selected method:
         </span>
         <span
           className={`text-sm font-bold tracking-wider px-3 py-1 rounded-full border text-xs
@@ -80,7 +80,7 @@ export default function FeedbackPanel({ chosenMethod, message, quality, onContin
           fontFamily: "'Orbitron', sans-serif",
         }}
       >
-        CONTINUAR → RESOLVER EL SISTEMA
+        CONTINUAR -> RESOLVER / CONTINUE -> SOLVE
       </motion.button>
     </motion.div>
   );

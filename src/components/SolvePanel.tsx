@@ -92,11 +92,11 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
     <div className="space-y-5">
       <div className="text-center">
         <p className="text-slate-300 text-sm font-mono mb-1">
-          Introduce la solución del sistema:
+          Introduce la solucion del sistema / Enter the system solution:
         </p>
         {attemptsLeft > 0 && feedback !== 'revealed' && (
           <p className="text-slate-500 text-xs font-mono">
-            {attempts > 0 ? `Intento ${attempts + 1} de ${MAX_ATTEMPTS}` : `Tienes ${MAX_ATTEMPTS} intentos`}
+            {attempts > 0 ? `Intento ${attempts + 1} de ${MAX_ATTEMPTS} / Attempt ${attempts + 1} of ${MAX_ATTEMPTS}` : `Tienes ${MAX_ATTEMPTS} intentos / You have ${MAX_ATTEMPTS} attempts`}
           </p>
         )}
       </div>
@@ -154,7 +154,7 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
       {feedback !== 'correct' && feedback !== 'revealed' && (
         <div className="rounded-xl border border-slate-700 bg-slate-900/60 p-3">
           <p className="text-xs text-slate-400 font-mono mb-2">
-            Teclado numerico (campo activo: {activeField === 'x' ? 'x' : 'y'})
+            Teclado numerico / Numeric keypad (campo activo / active field: {activeField === 'x' ? 'x' : 'y'})
           </p>
 
           <div className="grid grid-cols-3 gap-2">
@@ -200,21 +200,21 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
               onClick={backspaceActive}
               className="py-2 rounded-md border border-orange-700/50 text-orange-300 font-mono bg-orange-950/20 hover:bg-orange-900/25"
             >
-              Borrar
+              Borrar / Delete
             </button>
             <button
               type="button"
               onClick={clearActive}
               className="py-2 rounded-md border border-red-700/50 text-red-300 font-mono bg-red-950/20 hover:bg-red-900/25"
             >
-              Limpiar
+              Limpiar / Clear
             </button>
             <button
               type="button"
               onClick={() => setActiveField(activeField === 'x' ? 'y' : 'x')}
               className="py-2 rounded-md border border-slate-700 text-slate-200 font-mono bg-slate-800/60 hover:bg-slate-700/60"
             >
-              Cambiar
+              Cambiar / Switch
             </button>
           </div>
         </div>
@@ -234,7 +234,7 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
             fontFamily: "'Orbitron', sans-serif",
           }}
         >
-          ⚡ COMPROBAR SOLUCIÓN
+          ⚡ COMPROBAR SOLUCION / CHECK SOLUTION
         </motion.button>
       )}
 
@@ -248,12 +248,12 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
             className="border-neon-green bg-green-950/50 rounded-xl p-4 text-center"
           >
             <p className="neon-green text-lg font-bold" style={{ fontFamily: "'Orbitron', sans-serif" }}>
-              ✅ ¡CORRECTO!
+              ✅ CORRECTO / CORRECT
             </p>
             <p className="text-green-300 text-sm font-mono mt-1">
               <KatexRenderer math={`x = ${solution.x},\\quad y = ${solution.y}`} />
             </p>
-            <p className="text-slate-400 text-xs mt-2 font-mono">Desbloquando puerta…</p>
+            <p className="text-slate-400 text-xs mt-2 font-mono">Desbloqueando puerta... / Unlocking door...</p>
           </motion.div>
         )}
 
@@ -266,7 +266,7 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
             className="border-neon-red bg-red-950/40 rounded-xl p-3 text-center"
           >
             <p className="neon-red text-sm font-mono">
-              ❌ No es correcto. Revisa tus cálculos. Quedan {attemptsLeft} intento{attemptsLeft !== 1 ? 's' : ''}.
+              ❌ No es correcto. Revisa tus calculos. / Not correct. Check your calculations. Quedan {attemptsLeft} intento{attemptsLeft !== 1 ? 's' : ''}.
             </p>
           </motion.div>
         )}
@@ -279,13 +279,13 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
             className="border-neon-orange bg-yellow-950/40 rounded-xl p-4 text-center space-y-2"
           >
             <p className="neon-orange text-sm font-bold font-mono">
-              ⚠️ Se han agotado los intentos. Aquí está la solución:
+              ⚠️ Se han agotado los intentos. Aqui esta la solucion: / Attempts finished. Here is the solution:
             </p>
             <div className="text-lg">
               <KatexRenderer math={`x = ${solution.x},\\quad y = ${solution.y}`} />
             </div>
             <p className="text-slate-400 text-xs font-mono">
-              Comprueba el proceso con las pistas y continúa.
+              Comprueba el proceso con las pistas y continua. / Check the process with hints and continue.
             </p>
             <motion.button
               whileHover={{ scale: 1.02 }}
@@ -299,7 +299,7 @@ export default function SolvePanel({ solution, varLabels, onSuccess }: Props) {
                 fontFamily: "'Orbitron', sans-serif",
               }}
             >
-              CONTINUAR →
+              CONTINUAR / CONTINUE ->
             </motion.button>
           </motion.div>
         )}

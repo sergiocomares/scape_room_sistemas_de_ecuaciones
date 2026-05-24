@@ -22,11 +22,39 @@ interface Props {
 }
 
 const PHASE_TITLES: Record<RoomPhase, string> = {
-  intro: 'ANALIZAR SISTEMA',
-  write_system: 'PLANTEAR SISTEMA',
-  choose_method: 'ELEGIR MÉTODO',
-  solve: 'RESOLVER SISTEMA',
-  success: 'SALA COMPLETADA',
+  intro: 'ANALIZAR SISTEMA / ANALYZE SYSTEM',
+  write_system: 'PLANTEAR SISTEMA / BUILD THE SYSTEM',
+  choose_method: 'ELEGIR METODO / CHOOSE METHOD',
+  solve: 'RESOLVER SISTEMA / SOLVE SYSTEM',
+  success: 'SALA COMPLETADA / ROOM CLEARED',
+};
+
+const DUA_STEPS: Record<RoomPhase, string[]> = {
+  intro: [
+    '1) Lee el reto y subraya datos clave / Read and highlight key data',
+    '2) Identifica variables x e y / Identify variables x and y',
+    '3) Decide el siguiente paso / Decide your next step',
+  ],
+  write_system: [
+    '1) Traduce el texto a ecuaciones / Translate text into equations',
+    '2) Comprueba signos y coeficientes / Check signs and coefficients',
+    '3) Valida tu sistema / Validate your system',
+  ],
+  choose_method: [
+    '1) Observa la forma del sistema / Observe system structure',
+    '2) Compara los tres metodos / Compare the three methods',
+    '3) Elige y justifica mentalmente / Choose and justify mentally',
+  ],
+  solve: [
+    '1) Resuelve paso a paso / Solve step by step',
+    '2) Revisa el resultado en ambas ecuaciones / Check both equations',
+    '3) Escribe x e y con cuidado / Enter x and y carefully',
+  ],
+  success: [
+    '1) Revisa lo aprendido / Review what you learned',
+    '2) Conserva la estrategia util / Keep the useful strategy',
+    '3) Pasa al siguiente reto / Move to the next challenge',
+  ],
 };
 
 export default function RoomCard({
@@ -66,11 +94,11 @@ export default function RoomCard({
               className="text-xs font-black px-2 py-0.5 rounded border neon-cyan border-cyan-600"
               style={{ fontFamily: "'Orbitron', sans-serif" }}
             >
-              PUERTA {room.doorNumber}
+              PUERTA / DOOR {room.doorNumber}
             </span>
             {room.type === 'word' && (
               <span className="text-xs px-2 py-0.5 rounded border text-purple-400 border-purple-700 bg-purple-950/40">
-                PROBLEMA VERBAL
+                PROBLEMA VERBAL / WORD PROBLEM
               </span>
             )}
           </div>
@@ -85,7 +113,7 @@ export default function RoomCard({
         {/* Phase indicator */}
         <div className="text-right">
           <span className="text-xs text-cyan-500 font-mono tracking-wider block">
-            FASE
+            FASE / PHASE
           </span>
           <span
             className="text-xs font-bold neon-cyan tracking-widest"
@@ -98,6 +126,23 @@ export default function RoomCard({
 
       {/* Room body */}
       <div className="p-6 space-y-5">
+        <div className="bg-slate-900/60 border border-slate-700/50 rounded-xl p-4 space-y-3">
+          <p className="text-cyan-300 text-xs font-mono uppercase tracking-widest">
+            DUA - Objetivo / Goal
+          </p>
+          <p className="text-slate-300 text-sm font-mono leading-relaxed">
+            Comprender el sistema, elegir una estrategia eficiente y justificar la solucion. / Understand the system, choose an efficient strategy, and justify the solution.
+          </p>
+          <div>
+            <p className="text-slate-400 text-xs font-mono mb-2">Pasos guiados / Guided steps</p>
+            <ul className="space-y-1">
+              {DUA_STEPS[phase].map((step) => (
+                <li key={step} className="text-slate-300 text-xs font-mono">{step}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
         <AnimatePresence mode="wait">
 
           {/* ── INTRO PHASE ── */}
@@ -146,7 +191,7 @@ export default function RoomCard({
               {room.type === 'word' && (
                 <div className="bg-slate-900/60 border border-slate-700/50 rounded-xl p-4">
                   <p className="text-slate-300 text-sm font-mono leading-relaxed">
-                    🧩 En esta puerta debes escribir tu propio sistema antes de elegir metodo.
+                    🧩 En esta puerta debes escribir tu propio sistema antes de elegir metodo. / In this room, write your own system before choosing a method.
                   </p>
                 </div>
               )}
@@ -164,7 +209,7 @@ export default function RoomCard({
                   fontFamily: "'Orbitron', sans-serif",
                 }}
               >
-                {room.type === 'word' ? 'ANALIZAR → PLANTEAR SISTEMA' : 'ANALIZAR → ELEGIR MÉTODO'}
+                {room.type === 'word' ? 'ANALIZAR -> PLANTEAR SISTEMA / ANALYZE -> BUILD SYSTEM' : 'ANALIZAR -> ELEGIR METODO / ANALYZE -> CHOOSE METHOD'}
               </motion.button>
             </motion.div>
           )}
@@ -250,7 +295,7 @@ export default function RoomCard({
                 <div className="text-center">
                   <span className="text-xs text-slate-500 font-mono">Método elegido: </span>
                   <span className="text-xs font-bold text-cyan-400 font-mono capitalize">{
-                    { sustitucion: 'Sustitución', igualacion: 'Igualación', reduccion: 'Reducción' }[selectedMethod]
+                    { sustitucion: 'Sustitucion / Substitution', igualacion: 'Igualacion / Equalization', reduccion: 'Reduccion / Elimination' }[selectedMethod]
                   }</span>
                 </div>
               )}
