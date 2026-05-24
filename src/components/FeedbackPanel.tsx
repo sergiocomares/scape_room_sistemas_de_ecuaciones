@@ -83,7 +83,7 @@ export default function FeedbackPanel({ chosenMethod, message, quality, lang, on
           fontFamily: "'Orbitron', sans-serif",
         }}
       >
-        {isEs ? 'CONTINUAR -&gt; RESOLVER' : 'CONTINUE -&gt; SOLVE'}
+        {isEs ? 'CONTINUAR -> RESOLVER' : 'CONTINUE -> SOLVE'}
       </motion.button>
     </motion.div>
   );

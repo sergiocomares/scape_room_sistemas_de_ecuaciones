@@ -316,7 +316,7 @@ export default function SolvePanel({ solution, varLabels, lang, onSuccess }: Pro
                 fontFamily: "'Orbitron', sans-serif",
               }}
             >
-              {isEs ? 'CONTINUAR -&gt;' : 'CONTINUE -&gt;'}
+              {isEs ? 'CONTINUAR ->' : 'CONTINUE ->'}
             </motion.button>
           </motion.div>
         )}
