@@ -1,12 +1,15 @@
 // ── HintBox — progressive hint revelation system ──
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { Language } from '../types';
 
 interface Props {
   hints: string[];
+  lang: Language;
 }
 
-export default function HintBox({ hints }: Props) {
+export default function HintBox({ hints, lang }: Props) {
+  const isEs = lang === 'es';
   const [revealed, setRevealed] = useState(0);
 
   const canReveal = revealed < hints.length;
@@ -16,7 +19,7 @@ export default function HintBox({ hints }: Props) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <span className="text-yellow-400 text-xs font-bold tracking-widest uppercase font-mono">
-          💡 Pistas / Hints
+          {isEs ? '💡 Pistas' : '💡 Hints'}
         </span>
         <span className="text-slate-500 text-xs font-mono">
           {revealed}/{hints.length}
@@ -54,13 +57,17 @@ export default function HintBox({ hints }: Props) {
             color: '#facc15',
           }}
         >
-          {revealed === 0 ? '🔍 Ver primera pista / Show first hint' : `🔍 Pista ${revealed + 1} de ${hints.length} / Hint ${revealed + 1} of ${hints.length}`}
+          {revealed === 0
+            ? (isEs ? '🔍 Ver primera pista' : '🔍 Show first hint')
+            : (isEs
+              ? `🔍 Pista ${revealed + 1} de ${hints.length}`
+              : `🔍 Hint ${revealed + 1} of ${hints.length}`)}
         </motion.button>
       )}
 
       {revealed === hints.length && (
         <p className="text-center text-yellow-600 text-xs font-mono mt-1">
-          Has visto todas las pistas disponibles. / You have viewed all available hints.
+          {isEs ? 'Has visto todas las pistas disponibles.' : 'You have viewed all available hints.'}
         </p>
       )}
     </div>

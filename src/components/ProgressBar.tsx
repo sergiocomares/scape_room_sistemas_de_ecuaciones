@@ -1,11 +1,13 @@
 // ── ProgressBar — shows current progress through all rooms ──
 import { motion } from 'framer-motion';
+import type { Language } from '../types';
 
 interface Props {
   total: number;
   completed: number;
   badges: string[];
   elapsedTime: number; // seconds
+  lang: Language;
 }
 
 function formatTime(seconds: number): string {
@@ -14,7 +16,8 @@ function formatTime(seconds: number): string {
   return `${m}:${s}`;
 }
 
-export default function ProgressBar({ total, completed, badges, elapsedTime }: Props) {
+export default function ProgressBar({ total, completed, badges, elapsedTime, lang }: Props) {
+  const isEs = lang === 'es';
   const pct = total > 0 ? (completed / total) * 100 : 0;
 
   return (
@@ -33,7 +36,7 @@ export default function ProgressBar({ total, completed, badges, elapsedTime }: P
             ⏱ {formatTime(elapsedTime)}
           </span>
           <span className="text-slate-400 font-mono">
-            {completed}/{total} salas / rooms
+            {completed}/{total} {isEs ? 'salas' : 'rooms'}
           </span>
         </div>
 
@@ -60,7 +63,7 @@ export default function ProgressBar({ total, completed, badges, elapsedTime }: P
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 15 }}
                 className="text-lg"
-                title={`Insignia / Badge ${i + 1}`}
+                title={isEs ? `Insignia ${i + 1}` : `Badge ${i + 1}`}
               >
                 {badge}
               </motion.span>

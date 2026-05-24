@@ -1,12 +1,12 @@
 // ── MethodSelector — 3 method choice buttons with descriptions ──
 import { motion } from 'framer-motion';
-import type { Method } from '../types';
+import type { Method, Language } from '../types';
 
 interface MethodOption {
   id: Method;
-  label: string;
+  label: Record<Language, string>;
   icon: string;
-  description: string;
+  description: Record<Language, string>;
   color: string;
   borderClass: string;
   hoverBg: string;
@@ -15,27 +15,36 @@ interface MethodOption {
 const OPTIONS: MethodOption[] = [
   {
     id: 'sustitucion',
-    label: 'Sustitucion / Substitution',
+    label: { es: 'Sustitución', en: 'Substitution' },
     icon: '🔄',
-    description: 'Despejo una variable y la sustituyo en la otra ecuacion. / Isolate one variable and substitute it into the other equation.',
+    description: {
+      es: 'Despejo una variable y la sustituyo en la otra ecuación.',
+      en: 'Isolate one variable and substitute it into the other equation.',
+    },
     color: 'text-cyan-400',
     borderClass: 'border-cyan-700/60 hover:border-cyan-400',
     hoverBg: 'rgba(0,212,255,0.08)',
   },
   {
     id: 'igualacion',
-    label: 'Igualacion / Equalization',
+    label: { es: 'Igualación', en: 'Equalization' },
     icon: '⚖️',
-    description: 'Despejo la misma variable en ambas ecuaciones y las igualo. / Isolate the same variable in both equations and set them equal.',
+    description: {
+      es: 'Despejo la misma variable en ambas ecuaciones y las igualo.',
+      en: 'Isolate the same variable in both equations and set them equal.',
+    },
     color: 'text-purple-400',
     borderClass: 'border-purple-700/60 hover:border-purple-400',
     hoverBg: 'rgba(139,92,246,0.08)',
   },
   {
     id: 'reduccion',
-    label: 'Reduccion / Elimination',
+    label: { es: 'Reducción', en: 'Elimination' },
     icon: '➕',
-    description: 'Sumo o resto las ecuaciones para eliminar una variable. / Add or subtract equations to eliminate one variable.',
+    description: {
+      es: 'Sumo o resto las ecuaciones para eliminar una variable.',
+      en: 'Add or subtract equations to eliminate one variable.',
+    },
     color: 'text-green-400',
     borderClass: 'border-green-700/60 hover:border-green-400',
     hoverBg: 'rgba(0,255,136,0.08)',
@@ -44,14 +53,16 @@ const OPTIONS: MethodOption[] = [
 
 interface Props {
   onSelect: (method: Method) => void;
+  lang: Language;
   disabled?: boolean;
 }
 
-export default function MethodSelector({ onSelect, disabled = false }: Props) {
+export default function MethodSelector({ onSelect, lang, disabled = false }: Props) {
+  const isEs = lang === 'es';
   return (
     <div className="space-y-3">
       <p className="text-slate-300 text-sm font-mono text-center mb-2">
-        Que metodo consideras mas adecuado para este sistema? / Which method is most suitable for this system?
+        {isEs ? '¿Qué método consideras más adecuado para este sistema?' : 'Which method is most suitable for this system?'}
       </p>
       {OPTIONS.map((opt, i) => (
         <motion.button
@@ -76,9 +87,9 @@ export default function MethodSelector({ onSelect, disabled = false }: Props) {
             <span className="text-2xl">{opt.icon}</span>
             <div>
               <p className={`font-bold text-base ${opt.color}`} style={{ fontFamily: "'Orbitron', sans-serif" }}>
-                {opt.label}
+                {opt.label[lang]}
               </p>
-              <p className="text-slate-400 text-xs mt-0.5 font-mono">{opt.description}</p>
+              <p className="text-slate-400 text-xs mt-0.5 font-mono">{opt.description[lang]}</p>
             </div>
           </div>
         </motion.button>

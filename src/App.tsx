@@ -1,12 +1,13 @@
 ﻿// ── App — main application controller ──
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import type { AppPhase, RoomPhase, Method } from './types'
+import type { AppPhase, RoomPhase, Method, Language } from './types'
 import { ROOMS } from './data/rooms'
 import StartScreen from './components/StartScreen'
 import ProgressBar from './components/ProgressBar'
 import RoomCard from './components/RoomCard'
 import VictoryScreen from './components/VictoryScreen'
+import LanguageTabs from './components/LanguageTabs'
 import { playErrorSound, playSuccessSound } from './utils/sound'
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
   const [roomIndex, setRoomIndex] = useState(0)
   const [roomPhase, setRoomPhase] = useState<RoomPhase>('intro')
   const [selectedMethod, setSelectedMethod] = useState<Method | null>(null)
+  const [lang, setLang] = useState<Language>('es')
   const [badges, setBadges]       = useState<string[]>([])
   const [elapsedTime, setElapsedTime] = useState(0)
   const [timerActive, setTimerActive] = useState(false)
@@ -152,6 +154,7 @@ export default function App() {
   // ── Render ──
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg-dark)' }}>
+      <LanguageTabs lang={lang} onChange={setLang} />
       <AnimatePresence mode="wait">
 
         {/* START SCREEN */}
@@ -159,6 +162,7 @@ export default function App() {
           <StartScreen
             key="start"
             onStart={handleStart}
+            lang={lang}
             musicNeedsUnlock={musicNeedsUnlock}
             onEnableMusic={handleEnableMusic}
           />
@@ -173,6 +177,7 @@ export default function App() {
               completed={completedRooms}
               badges={badges}
               elapsedTime={elapsedTime}
+              lang={lang}
             />
 
             {/* Room content */}
@@ -181,6 +186,7 @@ export default function App() {
                 <RoomCard
                   key={`${currentRoom.id}-${roomPhase}`}
                   room={currentRoom}
+                  lang={lang}
                   phase={roomPhase}
                   selectedMethod={selectedMethod}
                   isLastRoom={roomIndex === ROOMS.length - 1}
@@ -202,6 +208,7 @@ export default function App() {
             badges={badges}
             elapsedTime={elapsedTime}
             rooms={ROOMS}
+            lang={lang}
             onRestart={handleRestart}
             musicNeedsUnlock={musicNeedsUnlock}
             onEnableMusic={handleEnableMusic}

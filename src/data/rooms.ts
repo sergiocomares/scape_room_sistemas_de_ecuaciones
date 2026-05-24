@@ -10,12 +10,14 @@ export const ROOMS: RoomData[] = [
   {
     id: 1,
     type: 'equation',
-    title: 'Sala 1 / Room 1 — Control Central',
+    title: { es: 'Sala 1 — Control Central', en: 'Room 1 — Control Central' },
     doorNumber: '01',
-    narrative:
-      'El panel de seguridad principal esta bloqueado. / The main security panel is locked. Un sistema de ecuaciones protege la cerradura electronica. / A system of equations protects the electronic lock. Analiza la estructura antes de elegir tu metodo. / Analyze the structure before choosing your method.',
+    narrative: {
+      es: 'El panel de seguridad principal está bloqueado. Un sistema de ecuaciones protege la cerradura electrónica. Analiza la estructura antes de elegir tu método.',
+      en: 'The main security panel is locked. A system of equations protects the electronic lock. Analyze the structure before choosing your method.',
+    },
     badge: '🔑',
-    badgeLabel: 'Llave Alfa / Alpha Key',
+    badgeLabel: { es: 'Llave Alfa', en: 'Alpha Key' },
     latex: '\\begin{cases} 2y = x + 8 \\\\ y = 2x + 10 \\end{cases}',
     recommendedMethod: 'sustitucion',
     solution: { x: -4, y: 2 },
@@ -52,12 +54,14 @@ export const ROOMS: RoomData[] = [
   {
     id: 2,
     type: 'equation',
-    title: 'Sala 2 / Room 2 — Laboratorio Cuantico',
+    title: { es: 'Sala 2 — Laboratorio Cuántico', en: 'Room 2 — Quantum Lab' },
     doorNumber: '02',
-    narrative:
-      'El laboratorio tiene una puerta de doble cerrojo. / The lab has a double-lock door. El sistema muestra algo especial en los coeficientes. / The system shows something special in its coefficients. Observalo con atencion antes de actuar. / Look carefully before acting.',
+    narrative: {
+      es: 'El laboratorio tiene una puerta de doble cerrojo. El sistema muestra algo especial en los coeficientes. Obsérvalo con atención antes de actuar.',
+      en: 'The lab has a double-lock door. The system shows something special in its coefficients. Look carefully before acting.',
+    },
     badge: '🧪',
-    badgeLabel: 'Reactivo Beta / Beta Reagent',
+    badgeLabel: { es: 'Reactivo Beta', en: 'Beta Reagent' },
     latex: '\\begin{cases} 5x - y = 11 \\\\ 3x + y = 13 \\end{cases}',
     recommendedMethod: 'reduccion',
     solution: { x: 3, y: 4 },
@@ -94,12 +98,14 @@ export const ROOMS: RoomData[] = [
   {
     id: 3,
     type: 'equation',
-    title: 'Sala 3 / Room 3 — Camara de Servidores',
+    title: { es: 'Sala 3 — Cámara de Servidores', en: 'Room 3 — Server Chamber' },
     doorNumber: '03',
-    narrative:
-      'Los servidores del instituto estan protegidos. / The school servers are protected. Ambas ecuaciones tienen una estructura muy particular. / Both equations have a very specific structure. Observa que variable esta en el lado izquierdo. / Notice which variable is on the left side.',
+    narrative: {
+      es: 'Los servidores del instituto están protegidos. Ambas ecuaciones tienen una estructura muy particular. Observa qué variable está en el lado izquierdo.',
+      en: 'The school servers are protected. Both equations have a very specific structure. Notice which variable is on the left side.',
+    },
     badge: '💾',
-    badgeLabel: 'Chip Gamma / Gamma Chip',
+    badgeLabel: { es: 'Chip Gamma', en: 'Gamma Chip' },
     latex: '\\begin{cases} x = 2y + 3 \\\\ x = 3y - 1 \\end{cases}',
     recommendedMethod: 'igualacion',
     solution: { x: 11, y: 4 },
@@ -136,12 +142,14 @@ export const ROOMS: RoomData[] = [
   {
     id: 4,
     type: 'equation',
-    title: 'Sala 4 / Room 4 — Sala de Maquinas',
+    title: { es: 'Sala 4 — Sala de Máquinas', en: 'Room 4 — Machine Room' },
     doorNumber: '04',
-    narrative:
-      'La puerta final de los sistemas mecanicos. / The final door of the mechanical systems. Una ecuacion parece mas simple que la otra. / One equation seems simpler than the other. Identifica cual ofrece el despeje mas sencillo. / Identify which one is easiest to isolate.',
+    narrative: {
+      es: 'La puerta final de los sistemas mecánicos. Una ecuación parece más simple que la otra. Identifica cuál ofrece el despeje más sencillo.',
+      en: 'The final door of the mechanical systems. One equation seems simpler than the other. Identify which one is easiest to isolate.',
+    },
     badge: '⚙️',
-    badgeLabel: 'Engranaje Delta / Delta Gear',
+    badgeLabel: { es: 'Engranaje Delta', en: 'Delta Gear' },
     latex: '\\begin{cases} 3x + 2y = 8 \\\\ x - y = 1 \\end{cases}',
     recommendedMethod: 'sustitucion',
     solution: { x: 2, y: 1 },
@@ -176,20 +184,27 @@ export const ROOMS: RoomData[] = [
   {
     id: 5,
     type: 'word',
-    title: 'Sala 5 / Room 5 — Almacen de Material',
+    title: { es: 'Sala 5 — Almacén de Material', en: 'Room 5 — Supply Storage' },
     doorNumber: '05',
-    problemText:
-      'En la papeleria del instituto / At the school stationery shop:\n• 2 boligrafos y 1 cuaderno cuestan 8 € / 2 pens and 1 notebook cost 8 €\n• 1 boligrafo y 1 cuaderno cuestan 5 € / 1 pen and 1 notebook cost 5 €\n\nCuanto cuesta cada articulo? / How much does each item cost?',
-    narrative:
-      'En el almacen hay un registro de compras. / There is a purchase log in the storage room. Necesitas plantear un sistema con los datos del registro para abrir la cerradura. / Build a system with that data to unlock the door.',
-    systemExplanation: 'Sea x = precio de un boligrafo (€) e y = precio de un cuaderno (€). / Let x = price of one pen (€) and y = price of one notebook (€):',
+    problemText: {
+      es: 'En la papelería del instituto:\n• 2 bolígrafos y 1 cuaderno cuestan 8 €\n• 1 bolígrafo y 1 cuaderno cuestan 5 €\n\n¿Cuánto cuesta cada artículo?',
+      en: 'At the school stationery shop:\n• 2 pens and 1 notebook cost 8 €\n• 1 pen and 1 notebook cost 5 €\n\nHow much does each item cost?',
+    },
+    narrative: {
+      es: 'En el almacén hay un registro de compras. Necesitas plantear un sistema con los datos del registro para abrir la cerradura.',
+      en: 'There is a purchase log in the storage room. Build a system with that data to unlock the door.',
+    },
+    systemExplanation: {
+      es: 'Sea x = precio de un bolígrafo (€) e y = precio de un cuaderno (€):',
+      en: 'Let x = price of one pen (€) and y = price of one notebook (€):',
+    },
     badge: '✏️',
-    badgeLabel: 'Boligrafo Epsilon / Epsilon Pen',
+    badgeLabel: { es: 'Bolígrafo Epsilon', en: 'Epsilon Pen' },
     latex: '\\begin{cases} 2x + y = 8 \\\\ x + y = 5 \\end{cases}',
     expectedEquations: ['2x+y=8', 'x+y=5'],
     recommendedMethod: 'reduccion',
     solution: { x: 3, y: 2 },
-    varLabels: { x: 'boligrafo (€) / pen (€)', y: 'cuaderno (€) / notebook (€)' },
+    varLabels: { x: { es: 'bolígrafo (€)', en: 'pen (€)' }, y: { es: 'cuaderno (€)', en: 'notebook (€)' } },
     hints: [
       '🔍 Define las variables: x = precio de un bolígrafo, y = precio de un cuaderno.',
       '💡 Traduce las frases: "2 bolígrafos y 1 cuaderno cuestan 8€" → 2x + y = 8. ¿Y la segunda frase?',
@@ -220,66 +235,80 @@ export const ROOMS: RoomData[] = [
   {
     id: 6,
     type: 'word',
-    title: 'Sala 6 / Room 6 — Parking Inteligente',
+    title: { es: 'Sala 6 — Parking Inteligente', en: 'Room 6 — Smart Parking' },
     doorNumber: '06',
-    problemText:
-      'En el parking del instituto hay coches y motos / In the school parking lot there are cars and motorbikes:\n• En total hay 14 vehiculos / There are 14 vehicles in total\n• En total se cuentan 44 ruedas / There are 44 wheels in total\n\nCuantos coches y cuantas motos hay? / How many cars and motorbikes are there?',
-    narrative:
-      'La IA ha bloqueado la barrera automatica del parking. / The AI has blocked the parking barrier. Necesitas usar el numero de vehiculos y ruedas para abrirla. / Use number of vehicles and wheels to unlock it.',
-    systemExplanation: 'Sea x = numero de coches e y = numero de motos. / Let x = number of cars and y = number of motorbikes:',
+    problemText: {
+      es: 'En el parking del instituto hay coches y motos:\n• En total hay 14 vehículos\n• En total se cuentan 44 ruedas\n\n¿Cuántos coches y cuántas motos hay?',
+      en: 'In the school parking lot there are cars and motorbikes:\n• There are 14 vehicles in total\n• There are 44 wheels in total\n\nHow many cars and motorbikes are there?',
+    },
+    narrative: {
+      es: 'La IA ha bloqueado la barrera automática del parking. Necesitas usar el número de vehículos y ruedas para abrirla.',
+      en: 'The AI has blocked the parking barrier. Use number of vehicles and wheels to unlock it.',
+    },
+    systemExplanation: {
+      es: 'Sea x = número de coches e y = número de motos:',
+      en: 'Let x = number of cars and y = number of motorbikes:',
+    },
     badge: '🚗',
-    badgeLabel: 'Llave de Parking Zeta / Zeta Parking Key',
+    badgeLabel: { es: 'Llave de Parking Zeta', en: 'Zeta Parking Key' },
     latex: '\\begin{cases} x + y = 14 \\\\ 4x + 2y = 44 \\end{cases}',
     expectedEquations: ['x+y=14', '4x+2y=44'],
     recommendedMethod: 'reduccion',
     solution: { x: 8, y: 6 },
-    varLabels: { x: 'coches', y: 'motos' },
+    varLabels: { x: { es: 'coches', en: 'cars' }, y: { es: 'motos', en: 'motorbikes' } },
     hints: [
       '🔍 Define: x = coches, y = motos.',
-      '💡 Si hay 14 vehiculos en total, entonces x + y = 14. Para las ruedas: 4x + 2y = 44.',
+      '💡 Si hay 14 vehículos en total, entonces x + y = 14. Para las ruedas: 4x + 2y = 44.',
       '📐 Multiplica la primera por -2: -2x - 2y = -28. Al sumar con 4x + 2y = 44, obtienes 2x = 16.',
     ],
     methodFeedback: {
       reduccion: {
         quality: 'best',
         message:
-          '✅ ¡Correcto! Puedes eliminar y rapidamente si multiplicas la primera ecuacion por -2 y luego sumas.',
+          '✅ ¡Correcto! Puedes eliminar y rápidamente si multiplicas la primera ecuación por -2 y luego sumas.',
       },
       sustitucion: {
         quality: 'valid',
         message:
-          '⚠️ Se puede hacer despejando una variable, pero aqui la reduccion resulta mas directa.',
+          '⚠️ Se puede hacer despejando una variable, pero aquí la reducción resulta más directa.',
       },
       igualacion: {
         quality: 'valid',
         message:
-          '⚠️ Es posible, aunque implica mas pasos de despeje. Revisa si puedes cancelar una variable antes.',
+          '⚠️ Es posible, aunque implica más pasos de despeje. Revisa si puedes cancelar una variable antes.',
       },
     },
   },
 
   // ─────────────────────────────────────────────
-  // SALA 7 — Problema verbal 3 (Dos numeros)
+  // SALA 7 — Problema verbal 3 (Dos números)
   // ─────────────────────────────────────────────
   {
     id: 7,
     type: 'word',
-    title: 'Sala 7 / Room 7 — Clave Numerica Final',
+    title: { es: 'Sala 7 — Clave Numérica Final', en: 'Room 7 — Final Numeric Key' },
     doorNumber: '07',
-    problemText:
-      'Piensa en dos numeros enteros / Think of two integers:\n• Su suma es 18 / Their sum is 18\n• Su diferencia es 4 / Their difference is 4\n\nCuales son esos dos numeros? / Which two numbers are they?',
-    narrative:
-      'Ultima puerta: una clave numerica bloquea la salida. / Final door: a numeric key blocks the exit. Debes modelar el problema y resolver el sistema para liberar el instituto. / Model the problem and solve the system to free the school.',
-    systemExplanation: 'Sea x = numero mayor e y = numero menor. / Let x = larger number and y = smaller number:',
+    problemText: {
+      es: 'Piensa en dos números enteros:\n• Su suma es 18\n• Su diferencia es 4\n\n¿Cuáles son esos dos números?',
+      en: 'Think of two integers:\n• Their sum is 18\n• Their difference is 4\n\nWhich two numbers are they?',
+    },
+    narrative: {
+      es: 'Última puerta: una clave numérica bloquea la salida. Debes modelar el problema y resolver el sistema para liberar el instituto.',
+      en: 'Final door: a numeric key blocks the exit. Model the problem and solve the system to free the school.',
+    },
+    systemExplanation: {
+      es: 'Sea x = número mayor e y = número menor:',
+      en: 'Let x = larger number and y = smaller number:',
+    },
     badge: '🔢',
-    badgeLabel: 'Codigo Omega / Omega Code',
+    badgeLabel: { es: 'Código Omega', en: 'Omega Code' },
     latex: '\\begin{cases} x + y = 18 \\\\ x - y = 4 \\end{cases}',
     expectedEquations: ['x+y=18', 'x-y=4'],
     recommendedMethod: 'reduccion',
     solution: { x: 11, y: 7 },
-    varLabels: { x: 'numero mayor', y: 'numero menor' },
+    varLabels: { x: { es: 'número mayor', en: 'larger number' }, y: { es: 'número menor', en: 'smaller number' } },
     hints: [
-      '🔍 Define: x = numero mayor, y = numero menor.',
+      '🔍 Define: x = número mayor, y = número menor.',
       '💡 "Su suma es 18" → x + y = 18. "Su diferencia es 4" → x - y = 4.',
       '📐 Si sumas ambas ecuaciones: (x + y) + (x - y) = 18 + 4, obtienes 2x = 22.',
     ],
@@ -287,17 +316,17 @@ export const ROOMS: RoomData[] = [
       reduccion: {
         quality: 'best',
         message:
-          '✅ ¡Perfecto! Al sumar las ecuaciones, y se cancela al instante. Es el camino mas rapido.',
+          '✅ ¡Perfecto! Al sumar las ecuaciones, y se cancela al instante. Es el camino más rápido.',
       },
       sustitucion: {
         quality: 'valid',
         message:
-          '⚠️ Funciona, pero obliga a despejar primero. Con reduccion llegas antes.',
+          '⚠️ Funciona, pero obliga a despejar primero. Con reducción llegas antes.',
       },
       igualacion: {
         quality: 'valid',
         message:
-          '⚠️ Tambien es posible, aunque menos eficiente en este caso.',
+          '⚠️ También es posible, aunque menos eficiente en este caso.',
       },
     },
   },

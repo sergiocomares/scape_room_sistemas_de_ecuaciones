@@ -1,11 +1,13 @@
 // ── VictoryScreen — final congratulations screen ──
 import { motion } from 'framer-motion';
-import type { RoomData } from '../types';
+import type { RoomData, Language } from '../types';
+import { t } from '../utils/i18n';
 
 interface Props {
   badges: string[];
   elapsedTime: number;
   rooms: RoomData[];
+  lang: Language;
   onRestart: () => void;
   musicNeedsUnlock?: boolean;
   onEnableMusic?: () => void;
@@ -17,7 +19,9 @@ function formatTime(seconds: number): string {
   return `${m}:${s}`;
 }
 
-export default function VictoryScreen({ badges, elapsedTime, rooms, onRestart, musicNeedsUnlock = false, onEnableMusic }: Props) {
+export default function VictoryScreen({ badges, elapsedTime, rooms, lang, onRestart, musicNeedsUnlock = false, onEnableMusic }: Props) {
+  const isEs = lang === 'es';
+
   return (
     <div className="min-h-screen grid-bg flex flex-col items-center justify-center px-4 py-12">
 
@@ -51,23 +55,23 @@ export default function VictoryScreen({ badges, elapsedTime, rooms, onRestart, m
             className="text-3xl sm:text-4xl font-black neon-green tracking-wider"
             style={{ fontFamily: "'Orbitron', sans-serif" }}
           >
-            MISION COMPLETADA / MISSION COMPLETE
+            {isEs ? 'MISIÓN COMPLETADA' : 'MISSION COMPLETE'}
           </h1>
           <p className="text-green-400 mt-2 font-mono text-sm">
-            Has desbloqueado todas las puertas del instituto / You unlocked all school doors
+            {isEs ? 'Has desbloqueado todas las puertas del instituto' : 'You unlocked all school doors'}
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-slate-900/80 border border-cyan-800/40 rounded-xl p-4">
-            <p className="text-slate-400 text-xs font-mono uppercase tracking-widest mb-1">Tiempo / Time</p>
+            <p className="text-slate-400 text-xs font-mono uppercase tracking-widest mb-1">{isEs ? 'Tiempo' : 'Time'}</p>
             <p className="neon-cyan text-2xl font-bold" style={{ fontFamily: "'Orbitron', sans-serif" }}>
               {formatTime(elapsedTime)}
             </p>
           </div>
           <div className="bg-slate-900/80 border border-green-800/40 rounded-xl p-4">
-            <p className="text-slate-400 text-xs font-mono uppercase tracking-widest mb-1">Salas / Rooms</p>
+            <p className="text-slate-400 text-xs font-mono uppercase tracking-widest mb-1">{isEs ? 'Salas' : 'Rooms'}</p>
             <p className="neon-green text-2xl font-bold" style={{ fontFamily: "'Orbitron', sans-serif" }}>
               {badges.length}/{rooms.length}
             </p>
@@ -77,7 +81,7 @@ export default function VictoryScreen({ badges, elapsedTime, rooms, onRestart, m
         {/* Badges collection */}
         <div>
           <p className="text-slate-400 text-xs font-mono uppercase tracking-widest mb-4">
-            Insignias conseguidas / Badges earned
+            {isEs ? 'Insignias conseguidas' : 'Badges earned'}
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             {rooms.map((room, i) => (
@@ -90,7 +94,7 @@ export default function VictoryScreen({ badges, elapsedTime, rooms, onRestart, m
               >
                 <span className="text-3xl">{room.badge}</span>
                 <span className="text-xs text-slate-400 font-mono text-center leading-tight">
-                  {room.badgeLabel}
+                  {t(room.badgeLabel, lang)}
                 </span>
               </motion.div>
             ))}
@@ -100,17 +104,19 @@ export default function VictoryScreen({ badges, elapsedTime, rooms, onRestart, m
         {/* Summary of methods */}
         <div className="bg-slate-900/60 border border-slate-700/30 rounded-xl p-5 text-left space-y-2">
           <p className="text-slate-400 text-xs font-mono uppercase tracking-widest mb-3 text-center">
-            Resumen de metodos optimos / Best method summary
+            {isEs ? 'Resumen de métodos óptimos' : 'Best method summary'}
           </p>
           {rooms.map((room) => (
             <div key={room.id} className="flex justify-between items-center text-xs font-mono">
-              <span className="text-slate-400">{room.title.split('—')[1]?.trim()}</span>
+              <span className="text-slate-400">{t(room.title, lang).split('—')[1]?.trim()}</span>
               <span className={`px-2 py-0.5 rounded text-xs font-bold ${
                 room.recommendedMethod === 'sustitucion' ? 'text-cyan-400 bg-cyan-950/50' :
                 room.recommendedMethod === 'igualacion' ? 'text-purple-400 bg-purple-950/50' :
                 'text-green-400 bg-green-950/50'
               }`}>
-                {{ sustitucion: 'Sustitucion / Substitution', igualacion: 'Igualacion / Equalization', reduccion: 'Reduccion / Elimination' }[room.recommendedMethod]}
+                {isEs
+                  ? { sustitucion: 'Sustitución', igualacion: 'Igualación', reduccion: 'Reducción' }[room.recommendedMethod]
+                  : { sustitucion: 'Substitution', igualacion: 'Equalization', reduccion: 'Elimination' }[room.recommendedMethod]}
               </span>
             </div>
           ))}
@@ -124,13 +130,19 @@ export default function VictoryScreen({ badges, elapsedTime, rooms, onRestart, m
           className="bg-purple-950/30 border border-purple-700/40 rounded-xl p-4"
         >
           <p className="text-purple-300 text-sm font-mono leading-relaxed">
-            🌟 Has demostrado que sabes <span className="text-purple-400 font-bold">observar, analizar y elegir</span> el metodo mas adecuado para cada sistema. / You showed strategic mathematical thinking by choosing the best method.
+            {isEs
+              ? <><span>🌟 Has demostrado que sabes </span><span className="text-purple-400 font-bold">observar, analizar y elegir</span><span> el método más adecuado para cada sistema.</span></>
+              : '🌟 You showed strategic mathematical thinking by choosing the best method for each system.'}
           </p>
           <p className="text-purple-400 text-xs font-mono mt-3 leading-relaxed">
-            🎵 Cancion final personalizada / Custom final song: coloca tu audio en public/audio/final-song.mp3
+            {isEs
+              ? '🎵 Canción final personalizada: coloca tu audio en public/audio/final-song.mp3'
+              : '🎵 Custom final song: place your audio in public/audio/final-song.mp3'}
           </p>
           <p className="text-slate-400 text-xs font-mono mt-2 leading-relaxed">
-            DUA - Reflexiona: Que estrategia te ayudo mas hoy? / Reflect: Which strategy helped you most today?
+            {isEs
+              ? 'DUA - Reflexiona: ¿Qué estrategia te ayudó más hoy?'
+              : 'UDL - Reflect: Which strategy helped you most today?'}
           </p>
           {musicNeedsUnlock && (
             <motion.button
@@ -145,7 +157,7 @@ export default function VictoryScreen({ badges, elapsedTime, rooms, onRestart, m
                 fontFamily: "'Orbitron', sans-serif",
               }}
             >
-              🎵 ACTIVAR MUSICA / ENABLE MUSIC
+              {isEs ? '🎵 ACTIVAR MÚSICA' : '🎵 ENABLE MUSIC'}
             </motion.button>
           )}
         </motion.div>
@@ -163,7 +175,7 @@ export default function VictoryScreen({ badges, elapsedTime, rooms, onRestart, m
             fontFamily: "'Orbitron', sans-serif",
           }}
         >
-          🔄 JUGAR DE NUEVO / PLAY AGAIN
+          {isEs ? '🔄 JUGAR DE NUEVO' : '🔄 PLAY AGAIN'}
         </motion.button>
       </motion.div>
     </div>

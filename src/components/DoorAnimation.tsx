@@ -1,15 +1,18 @@
 // ── DoorAnimation — door unlocking success animation ──
 import { motion } from 'framer-motion';
+import type { Language } from '../types';
 
 interface Props {
   badge: string;
   badgeLabel: string;
   roomTitle: string;
+  lang: Language;
   onNext: () => void;
   isLast: boolean;
 }
 
-export default function DoorAnimation({ badge, badgeLabel, roomTitle, onNext, isLast }: Props) {
+export default function DoorAnimation({ badge, badgeLabel, roomTitle, lang, onNext, isLast }: Props) {
+  const isEs = lang === 'es';
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -88,8 +91,7 @@ export default function DoorAnimation({ badge, badgeLabel, roomTitle, onNext, is
         <span className="neon-green text-sm font-bold tracking-wider" style={{ fontFamily: "'Orbitron', sans-serif" }}>
           {badgeLabel}
         </span>
-        <span className="text-green-400 text-xs font-mono">¡Insignia conseguida!</span>
-        <span className="text-green-500 text-[11px] font-mono">Badge earned!</span>
+        <span className="text-green-400 text-xs font-mono">{isEs ? 'Insignia conseguida' : 'Badge earned'}</span>
       </motion.div>
 
       {/* Success text */}
@@ -103,9 +105,9 @@ export default function DoorAnimation({ badge, badgeLabel, roomTitle, onNext, is
           className="neon-green text-xl font-black tracking-widest"
           style={{ fontFamily: "'Orbitron', sans-serif" }}
         >
-          🔓 PUERTA DESBLOQUEADA / DOOR UNLOCKED
+          {isEs ? '🔓 PUERTA DESBLOQUEADA' : '🔓 DOOR UNLOCKED'}
         </p>
-        <p className="text-slate-400 text-sm font-mono">{roomTitle} completada / completed</p>
+        <p className="text-slate-400 text-sm font-mono">{roomTitle} {isEs ? 'completada' : 'completed'}</p>
       </motion.div>
 
       {/* Next button */}
@@ -125,7 +127,9 @@ export default function DoorAnimation({ badge, badgeLabel, roomTitle, onNext, is
           boxShadow: '0 0 20px rgba(0,255,136,0.2)',
         }}
       >
-        {isLast ? '🏆 VER RESULTADOS FINALES / VIEW FINAL RESULTS' : '▶ SIGUIENTE SALA / NEXT ROOM'}
+        {isLast
+          ? (isEs ? '🏆 VER RESULTADOS FINALES' : '🏆 VIEW FINAL RESULTS')
+          : (isEs ? '▶ SIGUIENTE SALA' : '▶ NEXT ROOM')}
       </motion.button>
     </motion.div>
   );

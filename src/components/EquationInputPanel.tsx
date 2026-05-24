@@ -2,9 +2,11 @@ import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import KatexRenderer from './KatexRenderer';
 import { playErrorSound, playSuccessSound } from '../utils/sound';
+import type { Language } from '../types';
 
 interface Props {
   expectedEquations: [string, string];
+  lang: Language;
   onSuccess: () => void;
 }
 
@@ -33,7 +35,8 @@ function matchesSystem(userEqs: [string, string], expected: [string, string]): b
 
 const KEYBOARD_KEYS = ['x', 'y', '+', '-', '=', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
-export default function EquationInputPanel({ expectedEquations, onSuccess }: Props) {
+export default function EquationInputPanel({ expectedEquations, lang, onSuccess }: Props) {
+  const isEs = lang === 'es';
   const [eq1, setEq1] = useState('');
   const [eq2, setEq2] = useState('');
   const [focusField, setFocusField] = useState<1 | 2>(1);
@@ -87,10 +90,12 @@ export default function EquationInputPanel({ expectedEquations, onSuccess }: Pro
     <div className="space-y-4">
       <div className="bg-cyan-950/20 border border-cyan-800/40 rounded-xl p-4">
         <p className="text-cyan-300 text-xs font-mono uppercase tracking-widest mb-2">
-          Construye el sistema / Build the system
+          {isEs ? 'Construye el sistema' : 'Build the system'}
         </p>
         <p className="text-slate-300 text-sm font-mono">
-          Escribe las dos ecuaciones del enunciado usando el teclado basico. / Write both equations from the statement using the basic keypad.
+          {isEs
+            ? 'Escribe las dos ecuaciones del enunciado usando el teclado básico.'
+            : 'Write both equations from the statement using the basic keypad.'}
         </p>
       </div>
 
@@ -101,7 +106,7 @@ export default function EquationInputPanel({ expectedEquations, onSuccess }: Pro
             onClick={() => setFocusField(1)}
             className="w-full text-left"
           >
-            <p className="text-xs text-slate-400 font-mono mb-1">Ecuacion 1 / Equation 1</p>
+            <p className="text-xs text-slate-400 font-mono mb-1">{isEs ? 'Ecuación 1' : 'Equation 1'}</p>
             <p className="text-lg text-cyan-200 font-mono min-h-7">{eq1 || '_'}</p>
           </button>
         </div>
@@ -112,14 +117,14 @@ export default function EquationInputPanel({ expectedEquations, onSuccess }: Pro
             onClick={() => setFocusField(2)}
             className="w-full text-left"
           >
-            <p className="text-xs text-slate-400 font-mono mb-1">Ecuacion 2 / Equation 2</p>
+            <p className="text-xs text-slate-400 font-mono mb-1">{isEs ? 'Ecuación 2' : 'Equation 2'}</p>
             <p className="text-lg text-purple-200 font-mono min-h-7">{eq2 || '_'}</p>
           </button>
         </div>
       </div>
 
       <div className="rounded-xl border border-slate-700 bg-slate-900/60 p-3">
-        <p className="text-xs text-slate-400 font-mono mb-2">Teclado matematico basico / Basic math keypad</p>
+        <p className="text-xs text-slate-400 font-mono mb-2">{isEs ? 'Teclado matemático básico' : 'Basic math keypad'}</p>
         <div className="grid grid-cols-5 gap-2">
           {KEYBOARD_KEYS.map((key) => (
             <button
@@ -139,21 +144,21 @@ export default function EquationInputPanel({ expectedEquations, onSuccess }: Pro
             onClick={backspace}
             className="py-2 rounded-md border border-orange-700/50 text-orange-300 font-mono bg-orange-950/20 hover:bg-orange-900/25"
           >
-            Borrar / Delete
+            {isEs ? 'Borrar' : 'Delete'}
           </button>
           <button
             type="button"
             onClick={clearCurrent}
             className="py-2 rounded-md border border-red-700/50 text-red-300 font-mono bg-red-950/20 hover:bg-red-900/25"
           >
-            Limpiar / Clear
+            {isEs ? 'Limpiar' : 'Clear'}
           </button>
           <button
             type="button"
             onClick={() => setFocusField(focusField === 1 ? 2 : 1)}
             className="py-2 rounded-md border border-purple-700/50 text-purple-300 font-mono bg-purple-950/20 hover:bg-purple-900/25"
           >
-            Cambiar campo / Switch field
+            {isEs ? 'Cambiar campo' : 'Switch field'}
           </button>
         </div>
       </div>
@@ -171,7 +176,7 @@ export default function EquationInputPanel({ expectedEquations, onSuccess }: Pro
           fontFamily: "'Orbitron', sans-serif",
         }}
       >
-        VALIDAR SISTEMA / CHECK SYSTEM
+        {isEs ? 'VALIDAR SISTEMA' : 'CHECK SYSTEM'}
       </motion.button>
 
       <AnimatePresence mode="wait">
@@ -184,7 +189,9 @@ export default function EquationInputPanel({ expectedEquations, onSuccess }: Pro
             className="border-neon-red bg-red-950/40 rounded-xl p-3 text-center"
           >
             <p className="neon-red text-sm font-mono">
-              ❌ El sistema no coincide con el enunciado. Revisa coeficientes y signos. / The system does not match the statement. Check coefficients and signs.
+              {isEs
+                ? '❌ El sistema no coincide con el enunciado. Revisa coeficientes y signos.'
+                : '❌ The system does not match the statement. Check coefficients and signs.'}
             </p>
           </motion.div>
         )}
@@ -197,7 +204,7 @@ export default function EquationInputPanel({ expectedEquations, onSuccess }: Pro
             className="border-neon-green bg-green-950/50 rounded-xl p-3 text-center"
           >
             <p className="neon-green text-sm font-bold" style={{ fontFamily: "'Orbitron', sans-serif" }}>
-              ✅ Sistema planteado correctamente / System built correctly
+              {isEs ? '✅ Sistema planteado correctamente' : '✅ System built correctly'}
             </p>
             <p className="text-green-300 text-xs font-mono mt-1">
               <KatexRenderer math={`\\begin{cases} ${normalizeEquation(eq1)} \\\\ ${normalizeEquation(eq2)} \\end{cases}`} />
