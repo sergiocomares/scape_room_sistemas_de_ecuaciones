@@ -1,6 +1,6 @@
 // ── FeedbackPanel — shows animated feedback on method choice ──
 import { motion } from 'framer-motion';
-import type { Method, MethodQuality, Language } from '../types';
+import type { Method, MethodQuality, Language, LocalizedText } from '../types';
 import { t } from '../utils/i18n';
 
 const METHOD_LABELS: Record<Method, Record<Language, string>> = {
@@ -29,7 +29,7 @@ const QUALITY_STYLES: Record<MethodQuality, { borderClass: string; bgClass: stri
 
 interface Props {
   chosenMethod: Method;
-  message: string;
+  message: string | LocalizedText;
   quality: MethodQuality;
   lang: Language;
   onContinue: () => void;
