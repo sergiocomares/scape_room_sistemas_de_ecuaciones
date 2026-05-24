@@ -105,12 +105,6 @@ export default function StartScreen({ onStart, lang, musicNeedsUnlock = false, o
               ? 'Recurso creado por Sergio Jodral, profesor de matemáticas usando tecnología IA.'
               : 'Resource created by Sergio Jodral, mathematics teacher using AI technology.'}
           </p>
-          <p className="text-cyan-300 text-xs mt-2 font-semibold">
-            {isEs
-              ? 'Si quieres escuchar la canción completa, completa el scape room.'
-              : 'Complete the escape room to hear the full song.'}
-          </p>
-
           <div className="mt-4 border border-slate-700/60 rounded-lg p-3 bg-slate-950/50">
             <p className="text-cyan-300 text-xs font-mono uppercase tracking-widest mb-2">
               {isEs ? 'DUA - Objetivos de aprendizaje' : 'UDL - Learning goals'}
